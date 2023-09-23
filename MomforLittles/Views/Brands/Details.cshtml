@@ -1,0 +1,114 @@
+﻿@model MomforLittles.Models.Brand
+
+@{
+    Layout = "~/Views/Shared/_LayoutBrand.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Brand</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.BRAND_NAME)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.BRAND_NAME)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.BRAND_TYPE)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.BRAND_TYPE)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CORRESPOND_TITLE)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CORRESPOND_TITLE)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CORRESPOND_NAME)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CORRESPOND_NAME)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.BRAND_PHONE)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.BRAND_PHONE)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.BRAND_TEL)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.BRAND_TEL)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.BRAND_ADDRESS)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.BRAND_ADDRESS)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.BRAND_LOGO)
+            </dt>
+    
+            <dd>
+                <img height="100px" width="100px" src="@Url.Content(Model.BRAND_LOGO)" />
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.BRAND_EMAIL)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.BRAND_EMAIL)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.BRAND_PASSWORD)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.BRAND_PASSWORD)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.BRAND_NTN)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.BRAND_NTN)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.BRAND_ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

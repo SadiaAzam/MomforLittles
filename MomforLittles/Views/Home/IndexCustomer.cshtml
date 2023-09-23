@@ -1,0 +1,730 @@
+﻿@model MomforLittles.Models.ProductModel
+
+@using MomforLittles.Models
+@{
+    Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
+}
+
+@{
+    ViewBag.Title = "HomePage";
+
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!---new--->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="/Content/Index/assets/css/templatemo-hexashop.css">
+
+    <link rel="stylesheet" href="~/Content/ProTemp/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/ProTemp/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/ProTemp/css/magnific-popup.css" type="text/css">
+
+    <style>
+        .product__item {
+            margin-bottom: 30px;
+        }
+
+            .product__item:hover .product__hover li {
+                opacity: 1;
+                top: 0;
+            }
+
+            .product__item.sale .product__item__pic .label {
+                background: #ca1515;
+            }
+
+            .product__item.sale .product__item__text .product__price {
+                color: #ca1515;
+            }
+
+        .product__item__pic {
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .product__item__pic .label {
+                font-size: 12px;
+                color: #ffffff;
+                font-weight: 500;
+                display: inline-block;
+                padding: 2px 8px;
+                text-transform: uppercase;
+                position: absolute;
+                left: 10px;
+                top: 10px;
+            }
+
+                .product__item__pic .label.new {
+                    background: #36a300;
+                }
+
+                .product__item__pic .label.stockout {
+                    background: #111111;
+                }
+
+                .product__item__pic .label.stockblue {
+                    background: #A324CC !important;
+                    color: white;
+                }
+
+                .product__item__pic .label.sale {
+                    background: #ca1515;
+                }
+
+        .product__hover {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            bottom: 30px;
+            text-align: center;
+        }
+
+            .product__hover li {
+                list-style: none;
+                display: inline-block;
+                margin-right: 10px;
+                position: relative;
+                top: 100px;
+                opacity: 0;
+            }
+
+                .product__hover li:nth-child(1) {
+                    -webkit-transition: all 0.4s ease 0.1s;
+                    -o-transition: all 0.4s ease 0.1s;
+                    transition: all 0.4s ease 0.1s;
+                }
+
+                .product__hover li:nth-child(2) {
+                    -webkit-transition: all 0.4s ease 0.15s;
+                    -o-transition: all 0.4s ease 0.15s;
+                    transition: all 0.4s ease 0.15s;
+                }
+
+                .product__hover li:nth-child(3) {
+                    -webkit-transition: all 0.4s ease 0.2s;
+                    -o-transition: all 0.4s ease 0.2s;
+                    transition: all 0.4s ease 0.2s;
+                }
+
+                .product__hover li:nth-child(4) {
+                    -webkit-transition: all 0.4s ease 0.25s;
+                    -o-transition: all 0.4s ease 0.25s;
+                    transition: all 0.4s ease 0.25s;
+                }
+
+                .product__hover li:last-child {
+                    margin-right: 0;
+                }
+
+                .product__hover li:hover a {
+                    background: #A324CC;
+                }
+
+                    .product__hover li:hover a span {
+                        color: #ffffff;
+                        -webkit-transform: rotate(360deg);
+                        -ms-transform: rotate(360deg);
+                        transform: rotate(360deg);
+                    }
+
+                .product__hover li a {
+                    font-size: 18px;
+                    color: #111111;
+                    display: block;
+                    height: 45px;
+                    width: 45px;
+                    background: #ffffff;
+                    line-height: 48px;
+                    text-align: center;
+                    border-radius: 50%;
+                    -webkit-transition: all, 0.5s;
+                    -o-transition: all, 0.5s;
+                    transition: all, 0.5s;
+                }
+
+                    .product__hover li a span {
+                        position: relative;
+                        -webkit-transform: rotate(0);
+                        -ms-transform: rotate(0);
+                        transform: rotate(0);
+                        -webkit-transition: all, 0.3s;
+                        -o-transition: all, 0.3s;
+                        transition: all, 0.3s;
+                        display: inline-block;
+                    }
+
+        .product__item__text {
+            text-align: center;
+            padding-top: 22px;
+        }
+
+            .product__item__text h6 a {
+                font-size: 14px;
+                color: #111111;
+            }
+
+            .product__item__text .rating {
+                line-height: 18px;
+                margin-bottom: 5px;
+            }
+
+                .product__item__text .rating i {
+                    font-size: 10px;
+                    color: #A324CC;
+                    margin-right: -4px;
+                }
+
+                    .product__item__text .rating i:last-child {
+                        margin-right: 0;
+                    }
+
+            .product__item__text .product__price {
+                color: #111111;
+                font-weight: 600;
+            }
+
+                .product__item__text .product__price span {
+                    font-size: 14px;
+                    color: #b1b0b0;
+                    text-decoration: line-through;
+                    margin-left: 4px;
+                }
+    </style>
+
+</head>
+
+<body>
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+    <df-messenger intent="WELCOME"
+                  chat-title="Mom4Little&#x27;s"
+                  agent-id="acf70eb1-bc56-44ef-a0ba-65eee7a80f82"
+                  language-code="en">
+
+    </df-messenger>
+    <style>
+        df-messenger {
+            --df-messenger-height:200px;
+            --df-messenger-bot-message: #A324CC;
+            --df-messenger-button-titlebar-color: #A324CC;
+            --df-messenger-chatbot-background-color: #ffffff;
+            --df-messenger-font-color: #111111;
+            --df-messenger-user-message:#d316ef;
+        }
+    </style>
+
+
+    
+
+    
+   
+    <!-- ***** Preloader Start ***** -->
+    <div id="js-preloader" class="js-preloader">
+        <div class="preloader-inner">
+            <span class="dot"></span>
+            <div class="dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+
+    <div class="main-banner wow fadeIn" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-6 align-self-center">
+                            <div class="left-content show-up header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
+                                <div class="row">
+                                    <div class="col-lg-12" style="margin-top:15px;">
+                                        <h6>Mom4Little's</h6>
+                                        <h2>Get Your Baby Glow With Us...</h2>
+                                        <p>
+                                            Baby clothes are fun to shop for, but don't get so caught up in
+                                            what's cute that you forget the primary watchwords of baby clothing:
+                                            comfort and ease. Look for soft, roomy,durable clothing that can
+                                            hold up through frequent washings.
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="border-first-button scroll-to-section">
+                                            <a href="@Url.Action("Product","Home")">Shop Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="right-image wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
+                                <img src="~/Content/CustTemp/assets/images/as.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="services" class="services section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
+
+                        <h4>Our  <em style="color: #A324CC;"> Categories</em></h4>
+                        <div class="line-dec"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row product-categorie-box">
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
+                <div class="row">
+                    @foreach (var c in Model.Cat)
+                    {
+                        <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                            <div class="products-single fix">
+                                <div class="box-img-hover">
+                                    <a href="@Url.Action("Product","Home", new {id=c.CATEGORY_ID})" class="list-group-item list-group-item-action"><img height="100" width="100" src="@Url.Content(c.CATEGORY_IMAGE)" /><center>@c.CATEGORY_NAME</center></a>
+
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!--About-->
+
+    <div id="about" class="about section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="about-left-image  wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.5s">
+                                <img src="~/Content/CustTemp/assets/images/bn.png" alt="">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 align-self-center  wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
+                            <div class="about-right-content">
+                                <div class="section-heading">
+                                    <h6 style="color: #A324CC;">
+                                        About Us
+                                    </h6>
+                                    <h4>Who is <em style="color: #A324CC;"> Mom4Little's</em></h4>
+                                    <div class="line-dec"></div>
+                                </div>
+                                <p>  Mom4Little's is the first online store of Pakistan. We offer a wide range of baby and kids (up to 5 years of age) products at market effective prices. Doesn’t matter if you are looking to buy diapers for your baby from popular brands like Pampers, Canbebe or want to buy baby skin care products from top brands</p>
+                                <div class="row">
+                                    <div class="col-lg-4 col-sm-4">
+                                        <div class="skill-item first-skill-item wow fadeIn" data-wow-duration="1s" data-wow-delay="0s">
+                                            <div class="progress" data-percentage="90">
+                                                <span class="progress-left">
+                                                    <span class="progress-bar"></span>
+                                                </span>
+                                                <span class="progress-right">
+                                                    <span class="progress-bar"></span>
+                                                </span>
+                                                <div class="progress-value">
+                                                    <div>
+                                                        90%<br>
+                                                        <span>Trust Platform</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-4">
+                                        <div class="skill-item second-skill-item wow fadeIn" data-wow-duration="1s" data-wow-delay="0s">
+                                            <div class="progress" data-percentage="80">
+                                                <span class="progress-left">
+                                                    <span class="progress-bar"></span>
+                                                </span>
+                                                <span class="progress-right">
+                                                    <span class="progress-bar"></span>
+                                                </span>
+                                                <div class="progress-value">
+                                                    <div>
+                                                        80%<br>
+                                                        <span>Marketing</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-4">
+                                        <div class="skill-item third-skill-item wow fadeIn" data-wow-duration="1s" data-wow-delay="0s">
+                                            <div class="progress" data-percentage="80">
+                                                <span class="progress-left">
+                                                    <span class="progress-bar"></span>
+                                                </span>
+                                                <span class="progress-right">
+                                                    <span class="progress-bar"></span>
+                                                </span>
+                                                <div class="progress-value">
+                                                    <div>
+                                                        80%<br>
+                                                        <span>Quality</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--slider-->
+    <div id="services" class="services section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
+                        <h6 style="color: #A324CC;">Our Booklet</h6>
+                        <h4> Branding Products <em style="color: #A324CC;">Collection Booklets</em></h4>
+                        <div class="line-dec"></div>
+
+                        <!-- ***** Main Banner Area Start ***** -->
+                        <div class="main-banner" id="top">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="left-content " style="margin-right:400px">
+                                            <div class="thumb">
+                                                <div class="inner-content">
+                                                    <h4 style="color:purple">We Are Mom4Little's</h4>
+                                                    <span style="color:#A32CC4">Grow, and &amp; Glow with Us. . .</span>
+                                                    <div class="main-border-button">
+                                                        <a href="@Url.Action("Product","Home")" style="background-color:#A32CC4">Purchase Now!</a>
+                                                    </div>
+                                                </div>
+
+                                                <img src="~/Content/CustTemp/assets/images/services-right-dec.jpg" height="430" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="right-content">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="right-first-image">
+                                                        <div class="thumb">
+                                                            <div class="inner-content">
+                                                                <h4 style="color:#A32CC4">2020</h4>
+
+                                                            </div>
+                                                            <div class="hover-content" height="100">
+                                                                <div class="inner">
+                                                                    <h4>2020</h4>
+
+                                                                    <div class="main-border-button">
+                                                                        <a href="~/Content/Customer/images/Mom4 Littles.pdf">Our 2020 Booklet</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <img src="~/Content/CustTemp/assets/images/baby.jpg" height="200" />
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="right-first-image">
+                                                        <div class="thumb">
+                                                            <div class="inner-content">
+                                                                <h4 style="color:#A32CC4">2021</h4>
+
+                                                            </div>
+                                                            <div class="hover-content" height="100">
+                                                                <div class="inner">
+                                                                    <h4>2021</h4>
+
+                                                                    <div class="main-border-button">
+                                                                        <a href="~/Content/Customer/images/Mom4 Littles.pdf">Our 2021 Booklet</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <img src="~/Content/CustTemp/assets/images/baby3.jpg" height="200" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="right-first-image">
+                                                        <div class="thumb">
+                                                            <div class="inner-content">
+                                                                <h4 style="color:#A32CC4">2022</h4>
+
+                                                            </div>
+                                                            <div class="hover-content" height="100">
+                                                                <div class="inner">
+                                                                    <h4>2022</h4>
+
+                                                                    <div class="main-border-button">
+                                                                        <a href="~/Content/Customer/images/Mom4 Littles.pdf">Our 2022 Booklet</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <img src="~/Content/Customer/images/abc.template.png" height="200" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="right-first-image">
+                                                        <div class="thumb">
+                                                            <div class="inner-content">
+                                                                <h4 style="color:#A32CC4">2023</h4>
+
+                                                            </div>
+                                                            <div class="hover-content" height="100">
+                                                                <div class="inner">
+                                                                    <h4>2023</h4>
+
+                                                                    <div class="main-border-button">
+                                                                        <a href="~/Content/Customer/images/Mom4 Littles.pdf">Launch  2023  Booklet</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <img src="~/Content/CustTemp/assets/images/baa.jpg" height="200" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+    <!--Services-->
+    <div id="services" class="services section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
+                        <h6 style="color: #A324CC;">Our Services</h6>
+                        <h4>What Our  Online Store <em style="color: #A324CC;"> Provides</em></h4>
+                        <div class="line-dec"></div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="naccs">
+                        <div class="grid">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="menu">
+                                        <div class="first-thumb active">
+                                            <div class="thumb">
+                                                <span class="icon   fa fa-check  m-0 mr-3 " style="color: #A32CC4 "></span>
+                                                Quality<br /> Product
+                                            </div>
+                                        </div>&nbsp;&nbsp;
+                                        <div class="first-thumb active">
+                                            <div class="thumb">
+                                                <span class="icon fa fa-shipping-fast  m-0 mr-2" style="color: #A32CC4 "></span>
+                                                Free<br />
+                                                Shipping
+                                            </div>
+                                        </div> &nbsp;&nbsp;
+                                        <div class="first-thumb active">
+                                            <div class="thumb">
+                                                <span class="icon fa fa-clock-o  m-0 mr-2" style="color: #A32CC4 "></span>
+                                                Fast<br />
+                                                Delivery
+                                            </div>
+                                        </div>&nbsp;&nbsp;
+                                        <div class="first-thumb active">
+                                            <div class="thumb">
+                                                <span class="icon fa fa-exchange-alt  m-0 mr-3" style="color: #A32CC4"></span>
+                                                14 Days <br />Return
+                                            </div>
+                                        </div>&nbsp;&nbsp;
+                                        <div class="first-thumb active">
+                                            <div class="thumb">
+                                                <span class="icon fa fa-phone-volume  m-0 mr-3" style="color: #A32CC4"></span>
+                                                24/7<br />
+                                                Support
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Featured End -->
+
+
+
+    <div id="free-quote" class="free-quote">
+        <div class="container ">
+            <div class="row" height="100">
+                <div class="col-lg-4 offset-lg-4">
+                    <div class="section-heading  wow fadeIn" data-wow-duration="1s" data-wow-delay="0.3s">
+
+                        <h6>We are launching Customized </h6>
+                        <h3><em style="color:purple;"> Gift Baby Basket</em></h3>
+                        <h4>Coming Soon </h4>
+                        <div class="line-dec">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!---slider image-->
+    <div id="portfolio" class="our-portfolio section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="section-heading wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.3s">
+                        <h6 style="color: #A324CC;">Our Branding Products</h6>
+                        <h4>See Our Feature  <em style="color: #A324CC;">Products</em></h4>
+                        <div class="line-dec"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid wow fadeIn" data-wow-duration="1s" data-wow-delay="0.7s">
+        <div class="row px-xl-5">
+            <div class="col">
+                <div class=" loop owl-carousel ">
+                    @foreach (var p in Model.Pro)
+                    {
+                        @*<div class="item">
+                                <div class="products-single fix">
+                                    <div class="box-img-hover">
+                                        <img src="@Url.Content(item.PICTURE)" class="img-fluid" alt="Image">
+                                        <div class="mask-icon">
+                                            <ul>
+                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                            </ul>
+                                            <a class="cart" href="#">Add to Cart</a>
+                                        </div>
+                                    </div>
+                                    <div class="why-text">
+                                        <h4>Lorem ipsum dolor sit amet</h4>
+                                        <h5> @item.SALEPRICE</h5>
+                                    </div>
+                                </div>
+                            </div>*@
+
+                        <div class="product__item">
+
+                            <div class="product__item__pic set-bg zoom-in">
+
+                                <img src="@Url.Content(p.PICTURE)" style="height:200px ;width:260px" alt="Image">
+                                <div>
+                                    @if (p.OrderDetails.Sum(x => x.QUANTITY) > 0)
+                                    {
+
+                                        <ul class="product__hover" style="color:#A324CC">
+                                            <li><a href="#" class="image-popup" title="@p.OrderDetails.Sum(x=>x.QUANTITY)"><i class="fas fa-store"></i></a></li>
+                                            <li><a href="@Url.Action("ShopDetail","Home", new { id = p.PRODUCT_ID })" class="image-popup" title="View"><i class="fas fa-eye"></i></a></li>
+                                            @if (Session["Customer"] == null)
+                                            {
+                                                <li><a href="@Url.Action("Create", "Customers", new { id = p.PRODUCT_ID })" class="image-popup" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                            }
+                                            else
+                                            {
+                                                if (Session["Customer"] != null)
+                                                {
+                                                    <li><a href="@Url.Action("AddtoWishList", "Customers", new { id = p.PRODUCT_ID })" class="image-popup" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+
+                                                }
+                                            }
+                                            <li>  <a class="cart image-popup" href="@Url.Action("AddToCart","Home", new { id = p.PRODUCT_ID })" title="Add to Bag"><i class="fa fa-shopping-bag"></i></a></li>
+                                        </ul>
+                                    }
+                                    else
+                                    {
+                                        <a class="label stockout stockblue cart">Out of Stock</a>
+                                        <ul class="product__hover" style="color:#A324CC">
+
+                                            <li> <center><a href="#" class="image-popup" title="Stock Out"><i class="fa fa-times"></i></a></center></li>
+                                        </ul>
+                                    }
+                                </div>
+                            </div>
+                            <div class="product__item__text">
+                                <center>
+                                    <h6><a href="#">@p.PRODUCT_NAME</a></h6>
+                                    <div class="rating" style="color:#A324CC">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product__price">Rs.@p.SALEPRICE</div>
+                                </center>
+                            </div>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Scripts -->
+    <script src="~/Content/CustTemp/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/CustTemp/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/CustTemp/assets/js/owl-carousel.js"></script>
+    <script src="~/Content/CustTemp/assets/js/animation.js"></script>
+    <script src="~/Content/CustTemp/assets/js/imagesloaded.js"></script>
+    <script src="~/Content/CustTemp/assets/js/custom.js"></script>
+    <script src="~/Content/ProTemp/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Content/ProTemp/js/main.js"></script>
+
+</body>
+</html>

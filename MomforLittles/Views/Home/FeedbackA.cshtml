@@ -1,0 +1,63 @@
+﻿@model IEnumerable<MomforLittles.Models.Feedback>
+@using MomforLittles.Models
+@{
+    int n = 0;
+    ViewBag.Title = "FeedBackA";
+}
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<center><h2 style="font-display:block;font-size:xx-large"><b><u><i>FeedBack</i></u></b></h2></center>
+
+
+
+
+
+<table class="table table-bordered">
+    <tr style="background-color: #A324CC; color: floralwhite">
+        <th>
+            Sr#
+        </th>
+        <th width="20%">
+            Sender Name
+        </th>
+        <th width="20%">
+            FeedBack Detail
+        </th>
+        <th>
+            Sender Email
+        </th>
+        <th>
+            Sender Contact Number
+        </th>
+
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        n++;
+        <tr>
+            <td>
+                @n;
+            </td>
+            <td>
+                @item.FEEDBACK_NAME
+            </td>
+            <td>
+                @item.FEEDBACK_DETAIL
+            </td>
+            <td>
+                @item.FEEDBACK_EMAIL
+            </td>
+            <td>
+                @item.FEEDBACK_CONTACT
+            </td>
+
+
+        </tr>
+    }
+
+</table>
+
+

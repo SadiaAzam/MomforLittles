@@ -1,0 +1,68 @@
+﻿@model IEnumerable<MomforLittles.Models.Product>
+@using MomforLittles.Models;
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a class="btn btn-danger btn-lg" href="@Url.Action("Create","Products")">Add New Product</a>
+</p>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>
+            PICTURE
+        </th>
+        <th>
+            PRODUCT NAME
+        </th>
+        <th width="200px">
+            DESCRIPTION
+        </th>
+        <th>
+            PURCHASE PRICE
+        </th>
+        <th>
+            SALE PRICE
+        </th>
+        <th>
+            Brand
+        </th>
+
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+         <tr>
+             <td>
+                 <img height="100px" width="100px" src="@Url.Content(item.PICTURE)" />
+             </td>
+             <td>
+                 @Html.DisplayFor(modelItem => item.PRODUCT_NAME)
+             </td>
+             <td>
+                 @Html.DisplayFor(modelItem => item.DESCRIPTION)
+             </td>
+             <td>
+                 @Html.DisplayFor(modelItem => item.PURCHASEPRICE)
+             </td>
+             <td>
+                 @Html.DisplayFor(modelItem => item.SALEPRICE)
+             </td>
+             <td>
+                 @Html.DisplayFor(modelItem => item.BRAND_FID)
+             </td>
+
+             <td>
+                 <a class="btn btn-primary glyphicon glyphicon-edit" href="@Url.Action("Edit", "Products", new { id = item.PRODUCT_ID })"></a>
+                 <a class="btn btn-success glyphicon glyphicon-book" href="@Url.Action("Details", "Products", new { id = item.PRODUCT_ID })"></a>
+                 <a class="btn btn-danger glyphicon glyphicon-trash" href="@Url.Action("Delete", "Products", new { id = item.PRODUCT_ID })"></a>
+             
+                 <a class="btn fa fa-store" href="@Url.Action("Purchase", "Purchase")"></a>
+             </td>
+         </tr>
+        
+    }
+
+</table>

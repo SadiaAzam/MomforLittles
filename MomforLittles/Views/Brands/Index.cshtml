@@ -1,0 +1,108 @@
+﻿@model IEnumerable<MomforLittles.Models.Brand>
+@using MomforLittles.Models;
+@{
+    Layout = "~/Views/Shared/_LayoutBrand.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+   
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Brand_Type
+            </th>
+            <th>
+                Correspond_Title
+            </th>
+            <th>
+                Correspond_Name
+            </th>
+            <th>
+                Phone
+            </th>
+            <th>
+                TEL
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                Logo
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                PIN
+            </th>
+            <th>
+                NTN
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            if (Session["Brand"] != null)
+            {
+                Brand b = (Brand)Session["Brand"];
+                if (b.BRAND_ID == item.BRAND_ID)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BRAND_NAME)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BRAND_TYPE)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CORRESPOND_TITLE)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CORRESPOND_NAME)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BRAND_PHONE)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BRAND_TEL)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BRAND_ADDRESS)
+                    </td>
+                    <td>
+                        <img height="100px" width="100px" src="@Url.Content(item.BRAND_LOGO)" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BRAND_EMAIL)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BRAND_PASSWORD)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BRAND_NTN)
+                    </td>
+                    <td>
+                        <a class="btn btn-primary glyphicon glyphicon-edit" href="@Url.Action("Edit", "Brands", new { id = item.BRAND_ID })"></a>
+                        <a class="btn btn-success glyphicon glyphicon-book" href="@Url.Action("Details", "Brands", new { id = item.BRAND_ID })"></a>
+                        <a class="btn btn-danger glyphicon glyphicon-trash" href="@Url.Action("Delete", "Brands", new { id = item.BRAND_ID })"></a>
+
+                    </td>
+                </tr>
+                }
+            }
+        }
+
+    </table>
+</body>
+</html>

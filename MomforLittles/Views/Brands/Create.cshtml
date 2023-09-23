@@ -1,0 +1,291 @@
+﻿@model MomforLittles.Models.Brand
+@{
+    Layout = "~/Views/Shared/_Layoutedit.cshtml";
+}
+@{
+    ViewBag.Title = "SignUp";
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> Register Yourself as a BRAND </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @*===============================================================================================*@
+    <link rel="icon" type="image/png" href="~/Content/Login/images/icons/favicon.ico" />
+    @*===============================================================================================*@
+    <link rel="stylesheet" type="text/css" href="~/Content/Login/vendor/bootstrap/css/bootstrap.min.css">
+    @*===============================================================================================*@
+    <link rel="stylesheet" type="text/css" href="~/Content/Login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    @*===============================================================================================*@
+    <link rel="stylesheet" type="text/css" href="~/Content/Login/fonts/iconic/css/material-design-iconic-font.min.css">
+    @*===============================================================================================*@
+    <link rel="stylesheet" type="text/css" href="~/Content/Login/vendor/animate/animate.css">
+    @*===============================================================================================*@
+    <link rel="stylesheet" type="text/css" href="~/Content/Login/vendor/css-hamburgers/hamburgers.min.css">
+    @*===============================================================================================*@
+    <link rel="stylesheet" type="text/css" href="~/Content/Login/vendor/animsition/css/animsition.min.css">
+    @*===============================================================================================*@
+    <link rel="stylesheet" type="text/css" href="~/Content/Login/vendor/select2/select2.min.css">
+    @*===============================================================================================*@
+    <link rel="stylesheet" type="text/css" href="~/Content/Login/vendor/daterangepicker/daterangepicker.css">
+    @*===============================================================================================*@
+    <link rel="stylesheet" type="text/css" href="~/Content/Login/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/Login/css/main.css">
+    @*===============================================================================================*@
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="~/Content/NAVBAR/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="~/Content/Customer/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+
+        /* The message box is shown when the user clicks on the password field */
+        #message {
+            display: none;
+            background: #f1f1f1;
+            color: #000;
+            position: relative;
+            padding: 20px;
+            margin-top: 10px;
+        }
+
+            #message p {
+                padding: 10px 35px;
+                font-size: 10px;
+            }
+
+        /* Add a green text color and a checkmark when the requirements are right */
+        .valid {
+            color: green;
+        }
+
+            .valid:before {
+                position: relative;
+                left: -35px;
+                content: green;
+            }
+
+        /* Add a red text color and an "x" icon when the requirements are wrong */
+        .invalid {
+            color: red;
+        }
+
+            .invalid:before {
+                position: relative;
+                left: -35px;
+                content: red;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100" style="background-color: #e1a0e0">
+                @using (Html.BeginForm("Create", "Brands", FormMethod.Post, new { enctype = "multipart/form-data", @id = "fromCaptcha" }))
+                {
+
+                    <form class="login100-form validate-form">
+                        <span class="login100-form-logo">
+                            <i class="fa fa-user"></i>
+                        </span>
+
+                        <span class="login100-form-title p-b-34 p-t-27">
+                            Brand Registration
+                        </span>
+
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="wrap-input100 validate-input" data-validate="Enter Brand Name">
+                            <input class="input100" type="text" name="BRAND_NAME" placeholder="Brand Name*" autocomplete="off" title="only Alphabets allowed" minlenght="3" maxlenght="25" required />
+                            <span class="focus-input100" data-placeholder="&#xf207;"></span>
+
+                        </div>
+                        <div class="wrap-input100 validate-input" data-validate="Enter Brand Type">
+                            <input class="input100" type="text" name="BRAND_TYPE" placeholder="Brand Type*" autocomplete="off" required title="only Alphabets allowed" minlenght="3" maxlenght="25" />
+                            <span class="focus-input100" data-placeholder="&#xf207;"></span>
+
+                        </div>
+                        <div class="wrap-input100 validate-input" data-validate="Enter Correspond Title">
+                            <input class="input100" type="text" name="CORRESPOND_TITLE" placeholder="Correspond Title" autocomplete="off" title="only Alphabets allowed" minlenght="3" maxlenght="25" required>
+                            <span class="focus-input100" data-placeholder="&#xf207;"></span>
+
+                        </div>
+                        <div class="wrap-input100 validate-input" data-validate="Enter Correspond Name">
+                            <input class="input100" type="text" name="CORRESPOND_NAME" placeholder="Correspond Name*" autocomplete="off" title="only Alphabets allowed" minlenght="3" maxlenght="25" required>
+                            <span class="focus-input100" data-placeholder="&#xf207;"></span>
+
+                        </div>
+                        <div class="wrap-input100 validate-input" data-validate="Enter Brand Phone">
+                            <input class="input100" type="text" name="BRAND_PHONE" placeholder="Phone No.*" autocomplete="off" title="only 11 numbers allowed" required>
+                            <span class="focus-input100" data-placeholder="&#xf2bc;"></span>
+
+                        </div>
+                        <div class="wrap-input100 validate-input" data-validate="Enter Brand Tel">
+                            <input class="input100" type="text" name="BRAND_TEL" placeholder="Brand Tel" autocomplete="off" title="only 11 numbers allowed" required>
+                            <span class="focus-input100" data-placeholder="&#9743;"></span>
+
+                        </div>
+                        <div class="wrap-input100 validate-input" data-validate="Enter Brand Address">
+                            <input class="input100" type="text" name="BRAND_ADDRESS" placeholder="Address*" autocomplete="off" minlenght="3" maxlenght="50" required>
+                            <span class="focus-input100" data-placeholder="&#10224;"></span>
+
+                        </div>
+                        <div class="wrap-input100 validate-input" data-validate="Enter Brand Logo">
+                            <input class="input100" type="text" name="BRAND_LOGO" placeholder="Brand Logo" autocomplete="off" required>
+                            <span class="focus-input100" data-placeholder="&#xf1c5;"></span>
+                            <input type="file" name="PRO_PIC" class="form-control btn btn-primary submit px-3" required />
+                        </div>
+                        <div class="wrap-input100 validate-input" data-validate="Enter Brand Email">
+                            <input class="input100" id="email" type="text" name="BRAND_EMAIL" placeholder="Email*" autocomplete="off" onchange="UserCheck()" required>
+                            <span class="focus-input100" data-placeholder="&#9993;"></span>
+
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2"></label>
+                            <div class="col-sm-10">
+                                <p id="Status" />
+                            </div>
+                        </div>
+                        <div class="wrap-input100 validate-input" data-validate="Enter Password">
+
+                            <input class="input100" type="password" name="BRAND_PASSWORD" id="myInput" pattern="(?=.\d)(?=.[a-z])(?=.[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" placeholder="Password" autocomplete="off">
+                            <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                            <i class="far fa-eye" id="togglePassword" style="margin-left: 290px; cursor: pointer;color:white; margin-top:-10px;"></i>
+                        </div>
+
+                        <div id="message">
+                            <h3>Password must contain the following:</h3>
+                            <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                            <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+                            <p id="number" class="invalid">A <b>number</b></p>
+                            <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+                        </div>
+                        <div class="wrap-input100 validate-input" data-validate="Enter Brand NTN">
+                            <input class="input100" type="text" name="BRAND_NTN" placeholder="NTN" autocomplete="off">
+                            <span class="focus-input100" data-placeholder="&#323;"></span>
+
+                        </div>
+                        <div class="text-center p-t-90">
+                            <a class="txt1" href="@Url.Action("ForgotPassword","Brands")">
+                                Forgot Password?
+                            </a>
+                        </div>
+
+
+                        <div class="container-login100-form-btn">
+                            <button type="submit" value="Create" class="login100-form-btn">Register</button>
+                        </div>
+
+                        <div class="text-center p-t-90">
+                            <a class="txt1" href="@Url.Action("Login","Brands")">
+                                Have Account? Sign In
+                            </a>
+                        </div>
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function UserCheck() {
+        $("#Status").html("Checking...");
+        $.post("@Url.Action("CheckUsernameAvailability", "Brands")",
+            {
+                userdata: $("#email").val()
+            },
+        function (data) {
+            if (data == 0) {
+                $("#Status").html('<font color="Green">Available !. you can take it.</font>');
+                $("#email").css("border-color", "Green");
+
+            }
+            else {
+                $("#Status").html('<font color="Red">That name is taken.Try Another.</font>');
+                $("#email").css("border-color", "Red");
+            }
+        });
+    }
+    </script>
+
+    <div id="dropDownSelect1"></div>
+    <script>
+        var myInput = document.getElementById("myInput");
+        var letter = document.getElementById("letter");
+        var capital = document.getElementById("capital");
+        var number = document.getElementById("number");
+        var length = document.getElementById("length");
+
+        // When the user clicks on the password field, show the message box
+        myInput.onfocus = function () {
+            document.getElementById("message").style.display = "block";
+        }
+
+        // When the user clicks outside of the password field, hide the message box
+        myInput.onblur = function () {
+            document.getElementById("message").style.display = "none";
+        }
+
+        // When the user starts to type something inside the password field
+        myInput.onkeyup = function () {
+            // Validate lowercase letters
+            var lowerCaseLetters = /[a-z]/g;
+            if (myInput.value.match(lowerCaseLetters)) {
+                letter.classList.remove("invalid");
+                letter.classList.add("valid");
+            } else {
+                letter.classList.remove("valid");
+                letter.classList.add("invalid");
+            }
+
+            // Validate capital letters
+            var upperCaseLetters = /[A-Z]/g;
+            if (myInput.value.match(upperCaseLetters)) {
+                capital.classList.remove("invalid");
+                capital.classList.add("valid");
+            } else {
+                capital.classList.remove("valid");
+                capital.classList.add("invalid");
+            }
+
+            // Validate numbers
+            var numbers = /[0-9]/g;
+            if (myInput.value.match(numbers)) {
+                number.classList.remove("invalid");
+                number.classList.add("valid");
+            } else {
+                number.classList.remove("valid");
+                number.classList.add("invalid");
+            }
+
+            // Validate length
+            if (myInput.value.length >= 8) {
+                length.classList.remove("invalid");
+                length.classList.add("valid");
+            } else {
+                length.classList.remove("valid");
+                length.classList.add("invalid");
+            }
+        }
+    </script>
+    <script>
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#myInput');
+
+        togglePassword.addEventListener('click', function (e) {
+            // toggle the type attribute
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            // toggle the eye slash icon
+            this.classList.toggle('fa-eye-slash');
+        });
+    </script>
+
+
+</body>
+</html>
+
+

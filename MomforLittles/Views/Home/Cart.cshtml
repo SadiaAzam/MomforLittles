@@ -1,0 +1,294 @@
+﻿@model MomforLittles.Models.ProductModel
+@using MomforLittles.Models
+@{
+    ViewBag.Title = "Cart";
+
+}
+@{
+    int row = 0;
+    int totalQty = 0;
+    decimal totalBill = 0;
+    decimal Bill = 0;
+    Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
+    ViewBag.Title = "Cart";
+}
+<head>
+    <style>
+        .product_item_text {
+            text-align: center;
+            padding-top: 22px;
+        }
+
+            .product_item_text:hover {
+                color: #A324CC;
+            }
+
+            .product_item_text h6 a {
+                font-size: 14px;
+                color: #111111;
+            }
+
+            .product_item_text .rating {
+                line-height: 18px;
+                margin-bottom: 5px;
+            }
+
+                .product_item_text .rating i {
+                    font-size: 10px;
+                    color: #A324CC;
+                    margin-right: -4px;
+                }
+
+                    .product_item_text .rating i:last-child {
+                        margin-right: 0;
+                    }
+
+        .product_itemtext .product_price {
+            color: #353232;
+            font-weight: 600;
+        }
+
+            .product_itemtext .product_price span {
+                font-size: 14px;
+                color: #b1b0b0;
+                text-decoration: line-through;
+                margin-left: 4px;
+            }
+
+        body {
+            background: url('../../Content/CustTemp/assets/images/slider-right-dec.jpg');
+        }
+    </style>
+</head>
+<title>Cart</title>
+<!-- Start All Title Box -->
+<div class="col-lg-4">
+    <center>
+
+        <ul class="breadcrumb" style="background-color: white; text-align: center">
+
+
+            <li class="breadcrumb-item"><a href="@Url.Action("Product","Home")" style="color:#000000;text-align:center">Products</a></li>
+            <li class="breadcrumb-item active" style="color:#A324CC;text-align:center">Cart</li>
+        </ul>
+    </center>
+</div>
+
+
+<!-- End All Title Box -->
+<!-- Start Cart  -->
+<div class="cart-box-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-main table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead style="background-color:#A324CC;">
+                            <tr>
+                                <th>Images</th>
+                                <th>Product Name</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th>Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @if (Session["myCart"] != null)
+                            {
+                                foreach (var item in (List<Product>)Session["myCart"])
+                                {
+
+                                    <tr>
+                                        <td class="thumbnail-img">
+                                            <a href="#">
+                                                <img style="height:150px; width:150px" src="@Url.Content(item.PICTURE)" alt="" />
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="product_item_text" style="color:#A324CC;">
+                                                <center>@item.PRODUCT_NAME</center>
+                                            </a>
+                                            <h6 class="product_item_text">Description : @item.DESCRIPTION</h6>
+
+                                            <h6 class="product_item_text">Available: @item.OrderDetails.Sum(x => x.QUANTITY)</h6>
+                                        </td>
+                                        <td class="product__price">
+                                            <p><b>Rs. @item.SALEPRICE</b></p>
+                                        </td>
+                                        <td class="quantity-box">
+                                            <a href="@Url.Action("MinusFromCart","Home",new { RowNo = row })" class="btn btn-light btn-sm fa fa-minus"></a> <b>  @item.PRO_QUANTITY  </b><a href="@Url.Action("PlusToCart","Home",new { RowNo = row })" class="btn btn-light btn-sm fa fa-plus"></a>
+                                        </td>
+                                        <td class="total-pr">
+                                            <p><b>Rs. @(decimal.Parse(item.SALEPRICE.ToString()) * int.Parse(item.PRO_QUANTITY.ToString()))</b></p>
+                                        </td>
+                                        <td class="remove-pr">
+                                            <a href="@Url.Action("RemoveFromCart","Home",new { RowNo = row })">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    row++;
+
+                                    totalQty += item.PRO_QUANTITY; //totalqty = totalqty + @item.PRO_QUANTITY;
+                                    totalBill += (decimal.Parse(item.SALEPRICE.ToString()) * int.Parse(item.PRO_QUANTITY.ToString()));
+                                    Bill += (((decimal.Parse(item.SALEPRICE.ToString()) * int.Parse(item.PRO_QUANTITY.ToString()))) - ((decimal.Parse(item.SALEPRICE.ToString()) * int.Parse(item.PRO_QUANTITY.ToString())) * 10) / 100);
+
+                                }
+                                Session["totalamount"] = totalBill;
+                            }
+
+                            @if (Session["myCart"] == null || row == 0)
+                            {
+                                <tr>
+                                    <td colspan="6" align="center" style="color:#A324CC">Your Shopping Cart is Empty...<a href="@Url.Action("Product","Home")">Click here to Buy </a></td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="2"><a class="btn btn-block " style="color:#A324CC; " href="@Url.Action("Product", "Home")">Continue Shopping</a></td>
+                                <td></td>
+                                <td><b>@totalQty</b></td>
+                                <td><b>Rs. @totalBill</b></td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        @using (Html.BeginForm("PayNow", "Home"))
+        {
+            <div class="row my-5">
+                <div class="col-lg-6 col-sm-12 order-box">
+                    <table width="100%"><tr><td><h3>Customer Detail</h3></td><td><h3 style="text-align:right"><a href="@Url.Action("Login", "Customers")" class="btn btn-danger" style="background-color:#A324CC;">Customer Login</a></h3></td></tr></table>
+
+                    @if (Session["Customer"] != null)
+                    {
+                        Customer c = (Customer)Session["Customer"];
+                        <div class="order-box">
+
+                            <div class="d-flex my-md-2">
+                                <input name="Order_Name" class="form-control" type="text" value="@c.CUSTOMER_NAME" required placeholder="Enter Name" />
+                            </div>
+                            <div class="d-flex my-md-4">
+                                <input name="Order_Contact" class="form-control" type="tel" value="@c.CUSTOMER_CONTACT" required placeholder="Enter Phone Number" />
+                            </div>
+                            <div class="d-flex my-md-4">
+                                <input name="Order_Email" class="form-control" type="email" value="@c.CUSTOMER_EMAIL" required placeholder="Enter Email Address" />
+                            </div>
+                            <div class="d-flex my-md-4">
+                                <textarea name="Order_Address" class="form-control" type="text" maxlength="25" minlength="15" required placeholder="Enter Address">@c.CUSTOMER_ADDRESS</textarea>
+                            </div>
+
+
+
+
+                        </div>
+
+                    }
+                    else
+                    {
+                        <div class="order-box">
+
+                            <div class="d-flex my-md-2">
+                                <input name="Order_Name" pattern="^[a-zA-Z]+[a-zA-Z'\s\.]*$" class="form-control" maxlength="15" minlength="3" type="text" required placeholder="Enter Your Name(Enter Text Only)" autocomplete="off" />
+                            </div>
+                            <div class="d-flex my-md-4">
+                                <input name="Order_Contact" pattern="\d{11}" class="form-control" type="tel" maxlength="11" required placeholder="Enter Your Mobile Number" autocomplete="off" />
+                            </div>
+                            <div class="d-flex my-md-4">
+                                <input name="Order_Email" title="Invalid Email" class="form-control" type="email" required placeholder="Enter valid Email Address" autocomplete="off" />
+                            </div>
+                            <div class="d-flex my-md-4">
+                                <textarea name="Order_Address" class="form-control" type="text" maxlength="25" minlength="5" autocomplete="off" required placeholder="Enter Address"></textarea>
+                            </div>
+
+
+
+
+                        </div>
+                    }
+
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                    <div class="order-box">
+                        <h3>Order summary</h3>
+                        <div class="d-flex">
+                            <h4>Sub Total</h4>
+                            <div class="ml-auto font-weight-bold"> Rs. @totalBill </div>
+                        </div>
+                        @if (Session["Customer"] != null)
+                        {
+                            Customer c = (Customer)Session["Customer"];
+
+                            <div class="d-flex">
+                                <h4>Discount</h4>
+                                <div class="ml-auto font-weight-bold"> 10% </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="d-flex">
+                                <h4>Discount</h4>
+                                <div class="ml-auto font-weight-bold">Rs. 0 </div>
+                            </div>
+                        }
+
+                        <hr class="my-1">
+
+                        <div class="d-flex">
+                            <h4>Tax</h4>
+                            <div class="ml-auto font-weight-bold"> Rs. 0 </div>
+                        </div>
+                        <div class="d-flex">
+                            <h4>Shipping Cost</h4>
+                            <div class="ml-auto font-weight-bold"> Free </div>
+                        </div>
+                        <div class="d-flex">
+                            <h4>Payment Method</h4>
+                            <div class="ml-auto">
+                                <span><input style="color:#A324CC" type="radio" value="Cash on Delivery" name="Order_Status" checked="checked" style="color:#A324CC" /> Cash on Delivery</span>
+
+                                <span> <input style="color:#A324CC" type="radio" value="Pay with Paypal" name="Order_Status" />Pay with Paypal</span>
+                            </div>
+
+                        </div>
+                        <hr>
+                        @if (Session["Customer"] != null)
+                        {
+                            Customer c = (Customer)Session["Customer"];
+
+                            <div class="d-flex">
+                                <h4>Discount</h4>
+                                <div class="ml-auto font-weight-bold"> 10% </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="d-flex">
+                                <h4>Discount</h4>
+                                <div class="ml-auto font-weight-bold">Rs. 0 </div>
+                            </div>
+                        }
+
+                        <hr>
+                        @if (Session["myCart"] != null)
+                        {
+                            <div class="col-12 d-flex shopping-box"><input style="color:white; background-color:#A324CC" type="submit" class="ml-auto btn hvr-hover" value="Checkout"> </div>
+                        }
+                    </div>
+
+                </div>
+
+            </div>
+        }
+    </div>
+</div>
+<!-- End Cart -->
+<script type="text/javascript">
+    window.onload = function () { window.scrollBy(0, 180); }
+</script>

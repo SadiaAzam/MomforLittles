@@ -1,0 +1,452 @@
+﻿@using MomforLittles.Models;
+@{Model1 db = new Model1();
+    Customer a = db.Customers.FirstOrDefault();
+    a = (Customer)Session["Customer"];
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="~/Content/Customer/images/fav.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="~/Content/Customer/images/fav.png">
+    <link rel="stylesheet" href="~/Content/Customer/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/Customer/css/style.css">
+    <link rel="stylesheet" href="~/Content/Customer/css/responsive.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <title>@ViewBag.Title - Mom4Little's</title>
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="~/Content/CustTemp/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="~/Content/CustTemp/assets/css/templatemo-digimedia-v1.css">
+    <link rel="stylesheet" href="~/Content/CustTemp/assets/css/animated.css">
+    <link rel="stylesheet" href="~/Content/CustTemp/assets/css/owl.css">
+
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="~/Content/NAVBAR/assets/css/font-awesome.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/Content/NAVBAR/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="~/Content/NAVBAR/assets/css/style.css">
+    <style>
+        /* width */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px grey;
+            border-radius: 10px;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #A324CC;
+            border-radius: 10px;
+        }
+
+            /* Handle on hover */
+            ::-webkit-scrollbar-thumb:hover {
+                background: #fa65b1;
+            }
+
+        .progress {
+            width: 150px;
+            height: 150px;
+            line-height: 150px;
+            background: none;
+            margin: 0 auto;
+            box-shadow: none;
+            position: relative;
+        }
+
+
+        #border-first-button {
+            display: inline-block !important;
+            padding: 10px 20px !important;
+            color: #fa65b1 !important;
+            border: 1px solid #fa65b1 !important;
+            border-radius: 23px;
+            font-weight: 500 !important;
+            letter-spacing: 0.3px !important;
+            transition: all .5s;
+        }
+
+            #border-first-button a:hover {
+                background-color: #fa65b1;
+                color: #fff !important;
+            }
+
+        #bttn {
+            background-color: white;
+            border: none;
+            color: black;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+
+        #hov {
+            background-color: #A324CC;
+            border: none;
+            color: white;
+            padding: 10px 35px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 20px;
+            border-radius: 14px;
+        }
+
+        #bttns {
+            margin-left: 1px;
+            background-color: white;
+            border: none;
+            color: black;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+
+        #hov:hover {
+            display: block;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+        /*  width*/
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        /*   Track*/
+        ::-webkit-scrollbar-track {
+            border-radius: 15px;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+        }
+
+        /* Handle*/
+        ::-webkit-scrollbar-thumb {
+            background: #A324CC;
+            border-radius: 15px;
+        }
+
+            /* Handle on hover*/
+            ::-webkit-scrollbar-thumb:hover {
+                background: #A32CC4;
+                border-radius: 15px;
+            }
+
+        list-group-item-action:hover {
+            color: #A324CC;
+        }
+
+        .i {
+            font-size: 20px;
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            left: 8%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+    <!--Start Main Top -->
+    <div class="main-top" style="background-color:lightgrey">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="text-slid-box">
+                        <div id="offer-box" class="carouselTicker">
+                            <ul class="offer-box">
+                                <li>
+                                    <i class="fab fa-opencart"></i> Off 10%! Coming Soon
+                                </li>
+
+                                <li>
+                                    <i class="fab fa-opencart"></i> Friday Deal Coming Soon
+                                </li>
+
+                                <li>
+                                    <i class="fab fa-opencart"></i> Customized Gift Lauching Soon
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="right-phone-box">
+                        <p>Call US :- <a href="#">@db.Companies.Select(x => x.COMPANY_CONTACT).FirstOrDefault()</a></p>
+
+                    </div>
+                    <div class="our-link">
+                        <ul>
+                            @if (Session["Customer"] != null)
+                            {
+                                <li><a href="@Url.Action("Index","Customers")" style="color:#A324CC"><i class="fa fa-user-circle-o"></i>  @a.CUSTOMER_NAME</a></li>
+                                <li> <a href="@Url.Action("Logout","Customers")" class="btn btn-default square-btn-adjust" style="color:#A324CC">Logout</a></li>
+                            }
+
+                            <li> <div id="google_translate_element"></div></li>
+
+                            <li class="i"><i class="bi bi-brightness-high-fill" id="toggleDark"></i></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--End Main Top-->
+    <header class="main-header">
+        <!-- Start Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
+            <div class="container">
+                <!-- Start Header Navigation -->
+                <div class="navbar-header">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="@Url.Action("IndexCustomer","Home")">
+                        <img src="~/Content/Customer/images/Momms.png" class="logo" alt="">
+                    </a>
+                </div>
+                <!-- End Header Navigation -->
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                        <li class="nav-item active"><a class="nav-link" href="@Url.Action("IndexCustomer","Home")"><i class="fa fa-home" style="margin-right:5px;"></i>Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Product","Home")"><i class="fa fa-luggage-cart" style="margin-right:5px;"></i>Products</a></li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Product","Home")" class="nav-link " data-toggle="dropdown"><i class="fa fa-list-alt" style="margin-right:5px;"></i>Categories</a>
+                            <ul class="dropdown-menu megamenu-content " role="menu">
+
+
+                                @foreach (var c in Model.Cat)
+                                {
+
+                                    <a href="@Url.Action("Product","Home", new {id=c.CATEGORY_ID})" class="list-group-item list-group-item-action" style="color:#A324CC">@c.CATEGORY_NAME   </a>
+
+                                }
+
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Feedback","Home")"><i class="fa fa-phone" style="margin-right:5px;"></i>Contact Us</a></li>
+                        <li class="dropdown">
+                            <button href="#" id="hov" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Register</button>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown">
+                                    <button id="bttn" href="#" class="nav-link " data-toggle="dropdown"><i class="fa fa-user-circle-o"></i>  As a User</button>
+                                    <ul class="dropdown" style="margin-left:45px;">
+
+                                        @if (Session["Customer"] != null)
+                                        {
+                                            <li><a href="@Url.Action("Index","Customers")">Manage Account</a></li>
+                                            <li><a href="@Url.Action("CustomerHistory","Customers")">Order History</a></li>
+                                            <li><a href="@Url.Action("CancelledOrder","Customers")">Cancelled Orders</a></li>
+                                            <li><a href="@Url.Action("Logout","Customers")">User Logout</a></li>
+                                        }
+                                        else
+                                        {
+                                            <li><a href="@Url.Action("Create","Customers")">Create Account</a></li>
+
+                                            <li><a href="@Url.Action("Login", "Customers")">User Login</a></li>
+                                        }
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <button id="bttns" href="#" class="nav-link " data-toggle="dropdown"><i class="fa fa-user-circle"></i>  As a Brand</button>
+                                    <ul class="dropdown" style="margin-left:45px;">
+
+                                        @if (Session["Brand"] != null)
+                                        {
+                                            <li><a href="@Url.Action("Index","Brands")">Manage Account</a></li>
+
+                                            <li><a href="@Url.Action("Logout","Brands")">Brand Logout</a></li>
+                                        }
+                                        else
+                                        {
+
+                                            <li><a href="@Url.Action("Create","Brands")">Create Account</a></li>
+
+                                            <li><a href="@Url.Action("Login", "Brands")">Brand Login</a></li>
+                                        }
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Start Atribute Navigation -->
+                        <div class="attr-nav">
+                            <ul>
+                                <li class="search"><a href="@Url.Action("Index", "Home")"><i class="fa fa-search"></i></a></li>
+                                <li class="side-menu">
+                                    <a href="@Url.Action("Cart","Home")">
+                                        <i class="fa fa-shopping-bag"></i>
+                                        <span class="badge"></span>
+                                        @if (Session["myCart"] != null)
+                                        {
+                                            List<Product> list = (List<Product>)Session["myCart"];
+                                            @list.Count();
+                                        }
+                                    </a>
+                                </li>
+                                @if (Session["Customer"] != null)
+                                {
+                                    <li class="side-menu">
+                                        <a href="@Url.Action("WishList", "Customers")">
+                                            <i class="fa fa-heart"></i>
+                                            <span class="badge"></span>
+                                            @if (Session["myWishList"] != null)
+                                            {
+                                                List<Product> list = (List<Product>)Session["myWishList"];
+                                                @list.Count();
+                                            }
+                                        </a>
+                                    </li>
+                                }
+                                <li class="search"><a href="@Url.Action("Login","Home")"><i class="fa fa-user"></i></a></li>
+                            </ul>
+                        </div>
+                        <!-- End Atribute Navigation -->
+                    </ul>
+        </nav>
+        </div> <!-- Header Main Menu Start -->
+        </div>
+        </div>
+        </div>
+        </div> <!-- End Bottom Area -->
+    </header>
+
+    @RenderBody()
+    <!-- Start Footer  -->
+    <footer>
+        <div>
+            <div class="free-quote">
+                <div class="row">
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-widget">
+                            <h4>About Mom4Little's</h4>
+                            <p>
+                                Mom4Little's is the first online store of Pakistan. We offer a wide range of baby and kids (up to 5 years of age) products at market effective prices. Doesn’t matter if you are looking to buy diapers for your baby from popular brands like Pampers, Canbebe or want to buy baby skin care products from top brands.
+                            </p>
+                            <ul>
+                                <li><a href="https://www.facebook.com/"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="https://twitter.com/"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a href="https://pk.linkedin.com/"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.whatsapp.com/"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-link">
+                            <h4>Information</h4>
+                            <ul>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Customer Service</a></li>
+                                <li><a href="#">Our Sitemap</a></li>
+                                <li><a href="#">Terms &amp; Conditions</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Delivery Information</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-link-contact">
+                            <h4>Contact Us</h4>
+                            <ul>
+                                <li>
+                                    <p><i class="fas fa-map-marker-alt"></i>Address: @db.Companies.Select(x => x.COMPANY_ADDRESS).FirstOrDefault()</p>
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">@db.Companies.Select(x => x.COMPANY_CONTACT).FirstOrDefault()</a></p>
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-envelope"></i>Email: <a href="mailto:contactinfo@gmail.com">@db.Companies.Select(x => x.COMPANY_EMAIL).FirstOrDefault()</a></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer  -->
+    <!-- Start copyright  -->
+    <div class="footer-copyright" style="background-color:lightgrey">
+        <center>
+            <p class="footer-company" style="color:#000000">
+                All Rights Reserved. &copy; 2023&nbsp; <a href="https://localhost:44375/Home/IndexCustomer" style="color:#8219ca">Mom4Littles</a> Design By : ASK
+
+            </p>
+        </center>
+    </div>
+    <!-- End copyright  -->
+
+    <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+    <!-- ALL JS FILES -->
+    <script src="~/Content/Customer/js/jquery-3.2.1.min.js"></script>
+    <script src="~/Content/Customer/js/popper.min.js"></script>
+    <script src="~/Content/Customer/js/bootstrap.min.js"></script>
+
+
+
+    <!-- ALL PLUGINS -->
+    <script src="~/Content/Customer/js/jquery.superslides.min.js"></script>
+    <script src="~/Content/Customer/js/bootstrap-select.js"></script>
+    <script src="~/Content/Customer/js/inewsticker.js"></script>
+    <script src="~/Content/Customer/js/bootsnav.js."></script>
+    <script src="~/Content/Customer/js/images-loded.min.js"></script>
+    <script src="~/Content/Customer/js/isotope.min.js"></script>
+    <script src="~/Content/Customer/js/owl.carousel.min.js"></script>
+    <script src="~/Content/Customer/js/baguetteBox.min.js"></script>
+    <script src="~/Content/Customer/js/form-validator.min.js"></script>
+    <script src="~/Content/Customer/js/contact-form-script.js"></script>
+    <script src="~/Content/Customer/js/custom.js"></script>
+    <!-- ::::::::::::::All JS Files here :::::::::::::: -->
+    <script src="~/Content/NAVBAR/assets/js/jquery-3.5.1.min.js"></script>
+    <!-- Main JS -->
+    <script src="~/Content/NAVBAR/assets/js/main.js"></script>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'ur,it,en,ar', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+        }
+    </script>
+
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script src="script.js" defer></script>
+    <script>
+        const toggle = document.getElementById('toggleDark');
+        const body = document.querySelector('body');
+
+        toggle.addEventListener('click', function () {
+            this.classList.toggle('bi-moon');
+            if (this.classList.toggle('bi-brightness-high-fill')) {
+                body.style.background = 'white';
+                body.style.color = 'black';
+                body.style.transition = '2s';
+            } else {
+                body.style.background = 'black';
+                body.style.color = 'white';
+                body.style.transition = '2s';
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>

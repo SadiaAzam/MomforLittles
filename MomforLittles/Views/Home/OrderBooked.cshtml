@@ -1,0 +1,228 @@
+﻿@model MomforLittles.Models.ProductModel
+@using MomforLittles.Models
+@{
+    int row = 0;
+    int totalQty = 0;
+    decimal totalBill = 0;
+    decimal Bill = 0;
+    Layout = "~/Views/Shared/_Layoutedit.cshtml";
+    ViewBag.Title = "Order Booked";
+}
+@{
+    ViewBag.Title = "Order Booked";
+
+}
+
+<!-- Start All Title Box -->
+<br />
+<br />
+
+<div class="col-lg-4">
+    <center>
+
+        <ul class="breadcrumb" style="background-color: white; text-align: center">
+
+            <li class="breadcrumb-item"><center><a href="@Url.Action("IndexCustomer","Home")" style="color:#000000;text-align:center">Home</a></center></li>
+            <li class="breadcrumb-item active">  <center><a href="@Url.Action("Product","Home")" style="color:#A324CC;text-align:center">Shop</a> </center></li>
+
+        </ul>
+    </center>
+</div>
+
+<!-- End All Title Box -->
+<!-- Start Cart  -->
+<div id="printArea">
+    <div class="cart-box-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="table-main table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Images</th>
+                                    <th>Product Name</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @if (Session["myCart"] != null)
+                                {
+                                    foreach (var item in (List<Product>)Session["myCart"])
+                                    {
+
+                                        <tr>
+                                            <td class="thumbnail-img">
+                                                <a href="#">
+                                                    <img style="height:150px; width:150px" src="@Url.Content(item.PICTURE)" alt="" />
+                                                </a>
+                                            </td>
+                                            <td class="name-pr">
+                                                <a href="#">
+                                                    @item.PRODUCT_NAME
+                                                </a>
+                                                <h4>@item.DESCRIPTION</h4>
+                                            </td>
+                                            <td class="price-pr">
+                                                <p><b>Rs. @item.SALEPRICE</b></p>
+                                            </td>
+                                            <td class="quantity-box">
+                                                <b>  @item.PRO_QUANTITY  </b>
+                                            </td>
+                                            <td class="total-pr">
+                                                <p><b>Rs. @(decimal.Parse(item.SALEPRICE.ToString()) * int.Parse(item.PRO_QUANTITY.ToString()))</b></p>
+                                            </td>
+                                        </tr>
+                                        row++;
+
+                                        totalQty += item.PRO_QUANTITY; //totalqty = totalqty + @item.PRO_QUANTITY;
+                                        totalBill += (decimal.Parse(item.SALEPRICE.ToString()) * int.Parse(item.PRO_QUANTITY.ToString()));
+                                        Bill += (((decimal.Parse(item.SALEPRICE.ToString()) * int.Parse(item.PRO_QUANTITY.ToString()))) - ((decimal.Parse(item.SALEPRICE.ToString()) * int.Parse(item.PRO_QUANTITY.ToString())) * 10) / 100);
+
+                                    }
+                                    Session["totalamount"] = totalBill;
+                                }
+
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><b>@totalQty</b></td>
+                                    <td><b>Rs. @totalBill</b></td>
+
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="row my-5">
+                @if (Session["Order"] != null)
+                {
+
+                    Order o = (Order)Session["Order"];
+                    <div class="col-lg-6 col-sm-12">
+                        <div class="order-box">
+                            <h3>Customer Detail</h3>
+                            <div class="d-flex">
+                                <h4>Name</h4>
+                                <div class="ml-auto font-weight-bold"> @o.ORDER_NAME</div>
+                            </div>
+                            <div class="d-flex">
+                                <h4>Address</h4>
+                                <div class="ml-auto font-weight-bold"> @o.ORDER_ADDRESS </div>
+                            </div>
+                            <hr class="my-1" />
+                            <div class="d-flex">
+                                <h4>Phone Number</h4>
+                                <div class="ml-auto font-weight-bold"> @o.ORDER_CONTACT </div>
+                            </div>
+                            <div class="d-flex">
+                                <h4>Email Address</h4>
+                                <div class="ml-auto font-weight-bold"> @o.ORDER_EMAIL </div>
+                            </div>
+                            <div class="d-flex">
+                                <h4>Order Status</h4>
+                                <div class="ml-auto font-weight-bold"> @o.ORDER_STATUS </div>
+                            </div>
+                            <hr>
+                            <div class="d-flex gr-total">
+                                <h5>Thank You!</h5>
+                                <div class="ml-auto h5"> Sit tight your order will be delivered soon. </div>
+                            </div>
+                            <hr />
+                        </div>
+                    </div>
+                }
+
+                <div class="col-lg-6 col-sm-12">
+                    <div class="order-box">
+                        <h3>Order summary</h3>
+                        <div class="d-flex">
+                            <h4>Sub Total</h4>
+                            <div class="ml-auto font-weight-bold"> Rs. @totalBill </div>
+                        </div>
+                        @if (Session["Customer"] != null)
+                        {
+                            Customer c = (Customer)Session["Customer"];
+
+                            <div class="d-flex">
+                                <h4>Discount</h4>
+                                <div class="ml-auto font-weight-bold"> 10% </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="d-flex">
+                                <h4>Discount</h4>
+                                <div class="ml-auto font-weight-bold">Rs. 0 </div>
+                            </div>
+                        }
+                        <hr class="my-1">
+                        <div class="d-flex">
+                            <h4>Coupon Discount</h4>
+                            <div class="ml-auto font-weight-bold"> Rs. 0 </div>
+                        </div>
+                        <div class="d-flex">
+                            <h4>Tax</h4>
+                            <div class="ml-auto font-weight-bold"> Rs. 0 </div>
+                        </div>
+                        <div class="d-flex">
+                            <h4>Shipping Cost</h4>
+                            <div class="ml-auto font-weight-bold"> Free </div>
+                        </div>
+                        <hr>
+                        @if (Session["Customer"] != null)
+                        {
+                            Customer c = (Customer)Session["Customer"];
+                            <div class="d-flex gr-total">
+                                <h5 style="color: #0c6a4e;">Grand Total: </h5>
+                                <div class="ml-auto h5"> @Bill </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="d-flex gr-total">
+                                <h5 style="color: #0c6a4e;">Grand Total: </h5>
+                                <div class="ml-auto h5"> @totalBill </div>
+                            </div>
+                        }
+                        <hr>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- End Cart -->
+</div>
+
+<center class="hidden-print">
+    <input id="btn2" onclick=" hideContentForPrint() ;" name="Print Report" value="Print Report" class="btn btn-success" style="background-color:black; color:white" />
+</center>
+<br />
+
+<center class="hidden-print">
+    <br /> <a class="btn btn-success" style="background-color:black; color:white" href="@Url.Action("CloseOrder","Home")">Close Order</a>
+</center>
+<br />
+
+<script type="text/javascript">
+
+    function hideContentForPrint() {
+        var elementsToHide = document.getElementsByClassName('hide-print');
+        for (var i = 0; i < elementsToHide.length; i++) {
+            elementsToHide[i].classList.add('hidden-print');
+        }
+
+        window.print();
+    }
+</script>

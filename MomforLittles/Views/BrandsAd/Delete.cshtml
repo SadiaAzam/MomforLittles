@@ -1,0 +1,112 @@
+﻿@model MomforLittles.Models.Brand
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Brand</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BRAND_NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BRAND_NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BRAND_TYPE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BRAND_TYPE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CORRESPOND_TITLE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CORRESPOND_TITLE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CORRESPOND_NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CORRESPOND_NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BRAND_PHONE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BRAND_PHONE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BRAND_TEL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BRAND_TEL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BRAND_ADDRESS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BRAND_ADDRESS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BRAND_LOGO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BRAND_LOGO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BRAND_EMAIL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BRAND_EMAIL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BRAND_PASSWORD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BRAND_PASSWORD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BRAND_NTN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BRAND_NTN)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

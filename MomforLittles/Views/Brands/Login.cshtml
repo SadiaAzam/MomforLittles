@@ -1,0 +1,113 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layoutedit.cshtml";
+}
+@{
+    ViewBag.Title = "Login";
+
+}
+@using MomforLittles.Models;
+@{Model1 db = new Model1(); }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> Customer Login </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @*===============================================================================================*@
+    <link rel="icon" type="image/png" href="~/Content/Login/images/icons/favicon.ico" />
+    @*===============================================================================================*@
+    <link rel="stylesheet" type="text/css" href="~/Content/Login/vendor/bootstrap/css/bootstrap.min.css">
+    @*===============================================================================================*@
+    <link rel="stylesheet" type="text/css" href="~/Content/Login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    @*===============================================================================================*@
+    <link rel="stylesheet" type="text/css" href="~/Content/Login/fonts/iconic/css/material-design-iconic-font.min.css">
+    @*===============================================================================================*@
+    <link rel="stylesheet" type="text/css" href="~/Content/Login/vendor/animate/animate.css">
+    @*===============================================================================================*@
+    <link rel="stylesheet" type="text/css" href="~/Content/Login/vendor/css-hamburgers/hamburgers.min.css">
+    @*===============================================================================================*@
+    <link rel="stylesheet" type="text/css" href="~/Content/Login/vendor/animsition/css/animsition.min.css">
+    @*===============================================================================================*@
+    <link rel="stylesheet" type="text/css" href="~/Content/Login/vendor/select2/select2.min.css">
+    @*===============================================================================================*@
+    <link rel="stylesheet" type="text/css" href="~/Content/Login/vendor/daterangepicker/daterangepicker.css">
+    @*===============================================================================================*@
+    <link rel="stylesheet" type="text/css" href="~/Content/Login/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/Login/css/main.css">
+    @*===============================================================================================*@
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="~/Content/NAVBAR/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="~/Content/Customer/css/style.css">
+    
+</head>
+<body>
+
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100"style="background-color:#e1a0e0; border:black">
+                @using (Html.BeginForm("Login", "Brands", FormMethod.Post))
+                {
+                    <form class="login100-form validate-form">
+                        <span class="login100-form-logo">
+                            <i class="fa fa-user"></i>
+                        </span>
+
+                        <span class="login100-form-title p-b-34 p-t-27">
+                            Brand Log in
+                        </span>
+
+                        <div class="wrap-input100 validate-input" data-validate="Enter username">
+                            <input class="input100" type="text" name="BRAND_EMAIL" placeholder="Username" autocomplete="off">
+                            <span class="focus-input100" data-placeholder="&#xf207;"></span>
+
+                        </div>
+
+                        <div class="wrap-input100 validate-input" data-validate="Enter password">
+                            <input class="input100" type="password" name="BRAND_PASSWORD" placeholder="Password" id="myInput" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" autocomplete="off">
+                            <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                            <i class="far fa-eye" id="togglePassword" style="margin-left: 290px; color:white; cursor: pointer; margin-top:-10px;"></i>
+                        </div>
+
+                        <div class="container-login100-form-btn">
+                            <button class="login100-form-btn" href="@Url.Action("Login","Customers")">
+                                Login
+                            </button>
+                        </div>
+                        <div class="text-center p-t-90">
+                            <a class="txt1" href="@Url.Action("ForgotPassword","Brands")">
+                                Forgot Password?
+                            </a>
+                        </div>
+                        <div class="text-center p-t-90">
+                            <a class="txt1" href="@Url.Action("Create","Brands")">
+                                Have not Account? Sign Up
+                            </a>
+                        </div>
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div id="dropDownSelect1"></div>
+    <script>
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#myInput');
+
+        togglePassword.addEventListener('click', function (e) {
+            // toggle the type attribute
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            // toggle the eye slash icon
+            this.classList.toggle('fa-eye-slash');
+        });
+    </script>
+    
+
+
+
+</body>
+</html>
+
+
+

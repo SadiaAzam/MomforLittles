@@ -1,0 +1,106 @@
+﻿@using MomforLittles.Models
+@{
+    int row = 0;
+    Layout = "~/Views/Shared/_Layoutedit.cshtml";
+}
+@{
+    ViewBag.Title = "WishList";
+
+}
+<!-- Start Top Search -->
+<div class="top-search">
+    <div class="container">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+            <input type="text" class="form-control" placeholder="Search">
+            <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+        </div>
+    </div>
+</div>
+<!-- End Top Search -->
+<!-- Start All Title Box -->
+<div class="col-lg-4">
+    <center>
+
+        <ul class="breadcrumb" style="background-color: white; text-align: center">
+            <li class="breadcrumb-item"><a href="@Url.Action("Product","Home")" style="color:#000000;text-align:center">Products</a></li>
+            <li class="breadcrumb-item active"style="color:#A324CC;text-align:center">Wishlist</li>
+           
+        </ul>
+    </center>
+</div>
+
+
+<!-- End All Title Box -->
+<!-- Start Wishlist  -->
+<div class="wishlist-box-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-main table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Images</th>
+                                <th>Product Name</th>
+                                <th>Unit Price </th>
+                                <th>Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Session["myWishList"] != null)
+                            {
+                                foreach (var item in (List<Product>)Session["myWishList"])
+                                {
+
+                                    <tr>
+                                        <td class="thumbnail-img">
+                                            <a href="#">
+                                                <img style="height:150px; width:150px" src="@Url.Content(item.PICTURE)" alt="" />
+                                            </a>
+                                        </td>
+                                        <td class="name-pr">
+                                            <a href="#">
+                                                @item.PRODUCT_NAME
+                                            </a>
+                                            <h4>@item.DESCRIPTION</h4>
+
+
+                                        </td>
+                                        <td class="price-pr">
+                                            <p><b>Rs. @item.SALEPRICE</b></p>
+                                        </td>
+                                        @*<td class="quantity-box">
+                                                <h5>Available: @item.OrderDetails.Sum(x => x.QUANTITY)</h5>
+                                            </td>*@
+
+                                        <td class="remove-pr">
+                                            <a href="@Url.Action("RemoveFromWishList","Customers",new { RowNo = row })">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    row++;
+                                }
+
+                            }
+
+                            @if (Session["myWishList"] == null || row == 0)
+                            {
+                                <tr>
+                                    <td colspan="6" align="center" style="color: #A324CC">Your WishList is Empty...<a href="@Url.Action("Product","Home")">Click here to Buy</a></td>
+                                </tr>
+                            }
+                        <tfoot>
+                            <tr>
+                                <td colspan="2"><a class="btn btn-danger" style="background-color: #A324CC;" href="@Url.Action("Product", "Home")">Continue Shopping</a></td>
+                            </tr>
+                        </tfoot>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Wishlist -->

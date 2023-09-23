@@ -1,0 +1,106 @@
+﻿@model MomforLittles.Models.Product
+
+@{
+    int row = 0;
+    int totalQty = 0;
+    decimal totalBill = 0;
+    Layout = "~/Views/Shared/_Layoutedit.cshtml";
+    ViewBag.Title = "Cart";
+}
+@{
+    ViewBag.Title = "Details";
+}
+<!-- Start All Title Box -->
+<br />
+<div class="col-lg-12">
+    
+    <ul class="breadcrumb"style="background-color:#ffffff">
+        <li class="breadcrumb-item"><a href="@Url.Action("Product","Home")" style="color:#000000">Shop</a></li>
+        <li class="breadcrumb-item active"style="color:#A324CC">Shop Detail </li>
+    </ul>
+</div>
+<!-- End All Title Box -->
+<!-- Start Shop Detail  -->
+<div class="shop-detail-box-main">
+    <div class="container">
+        <div class="row">
+
+
+            <div class="col-xl-5 col-lg-5 col-md-6">
+                <div id="carousel-example-1" class="single-product-slider carousel slide" data-ride="carousel">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="carousel-item active"> <img class="d-block w-100" src="@Url.Content(Model.PICTURE)" alt="First slide"> </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="col-xl-7 col-lg-7 col-md-6">
+                <div class="single-product-details">
+                    <h2>@Model.PRODUCT_NAME</h2>
+                    <h5> @Model.SALEPRICE</h5>
+                   
+                        <h4>available-stock</h4>   <a href="#" class="image-popup" title="@Model.OrderDetails.Sum(x=>x.QUANTITY)"><i class="fas fa-store" style="color:#A324CC"></i></a>
+                    
+                        <h4>Short Description:</h4>
+
+                        @Model.DESCRIPTION
+                    
+                    <h4>Long Description:</h4>
+                    <p>
+                        <h6>
+                            Baby  are fun to shop for, but don't get so caught up in
+                            what's cute that you forget the primary watchwords of baby clothing:
+                            comfort and ease. Look for soft, roomy,durable clothing that can
+                            hold up through frequent washings.
+                        </h6>
+                    </p>
+                    <ul>
+
+                        <li>
+                            <div class="form-group quantity-box">
+                                <label class="control-label">Quantity</label>
+                                @*<input class="form-control" value="0" min="0" max="20" type="number">*@
+                                <a href="@Url.Action("MinusFromCart","Home",new { RowNo = row })" class="btn btn-light btn-sm fa fa-minus"></a> <b>  @Model.PRO_QUANTITY  </b><a href="@Url.Action("PlusToCart","Home",new { RowNo = row })" class="btn btn-light btn-sm fa fa-plus"></a>
+
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="price-box-bar">
+                        <div class="cart-and-bay-btn">
+                            <a class="btn hvr-hover" data-fancybox-close="" href="@Url.Action("Product","Home")" style="background-color:#A324CC">Buy New</a>
+                            @if (Model.OrderDetails.Sum(x => x.QUANTITY) > 0)
+                            {
+                                <a class="btn hvr-hover" data-fancybox-close="" href="@Url.Action("AddToCart", "Home", new { id = Model.PRODUCT_ID })" style="background-color:#A324CC">Add to cart</a>
+                            }
+                            else
+                            {
+                                <a class="btn hvr-hover" data-fancybox-close="" style="background-color:#A324CC">Out of Stock</a>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="add-to-btn">
+                        <div class="add-comp">
+                            <a class="btn hvr-hover" href="@Url.Action("AddtoWishList","Customers", new { id = Model.PRODUCT_ID })" style="background-color:#A324CC"><i class="fas fa-heart"></i> Add to wishlist</a>
+                        </div>
+                        <div class="share-bar">
+                            <a class="btn hvr-hover" href="https://www.facebook.com/campaign/landing.php?campaign_id=1653377901&extra_1=s%7Cc%7C318305677145%7Ce%7Cfacebook%20login%7C&placement=&creative=318305677145&keyword=facebook%20login&partner_id=googlesem&extra_2=campaignid%3D1653377901%26adgroupid%3D65139787642%26matchtype%3De%26network%3Dg%26source%3Dnotmobile%26search_or_content%3Ds%26device%3Dc%26devicemodel%3D%26adposition%3D%26target%3D%26targetid%3Dkwd-1409285535%26loc_physical_ms%3D1011079%26loc_interest_ms%3D%26feeditemid%3D%26param1%3D%26param2%3D&gclid=Cj0KCQjw7PCjBhDwARIsANo7CgkXxSyURXXPcy7d63XgvLCFe_q6eaXOBAnPMVV02QtVRvIowTOXWEQaAmPzEALw_wcB"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                            <a class="btn hvr-hover" href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a>
+                            <a  class="btn hvr-hover" href="https://twitter.com/"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                           <a class="btn hvr-hover" href="https://pk.linkedin.com/"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+
+                            <a class="btn hvr-hover" href="https://www.whatsapp.com/"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,283 @@
+﻿
+@model IEnumerable<MomforLittles.Models.Product>
+@{
+    Layout = "~/Views/Shared/_Layoutedit.cshtml";
+}
+@{
+    ViewBag.Title = "Index";
+}
+<br />
+<link rel="stylesheet" href="~/Content/ProTemp/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="~/Content/ProTemp/css/elegant-icons.css" type="text/css">
+<link rel="stylesheet" href="~/Content/ProTemp/css/magnific-popup.css" type="text/css">
+
+<style>
+    .product__item {
+        margin-bottom: 35px;
+    }
+
+        .product__item:hover .product__hover li {
+            opacity: 1;
+            top: 0;
+        }
+
+        .product__item.sale .product__item__pic .label {
+            background: #ca1515;
+        }
+
+        .product__item.sale .product__item__text .product__price {
+            color: #ca1515;
+        }
+
+    .product__item__pic {
+        height: 320px;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .product__item__pic .label {
+            font-size: 12px;
+            color: #ffffff;
+            font-weight: 500;
+            display: inline-block;
+            padding: 2px 8px;
+            text-transform: uppercase;
+            position: absolute;
+            left: 10px;
+            top: 10px;
+        }
+
+            .product__item__pic .label.new {
+                background: #36a300;
+            }
+
+            .product__item__pic .label.stockout {
+                background: #111111;
+            }
+
+            .product__item__pic .label.stockblue {
+                background: #A324CC !important;
+                color: white;
+            }
+
+            .product__item__pic .label.sale {
+                background: #ca1515;
+            }
+
+    .product__hover {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        bottom: 30px;
+        text-align: center;
+    }
+
+        .product__hover li {
+            list-style: none;
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            top: 100px;
+            opacity: 0;
+        }
+
+            .product__hover li:nth-child(1) {
+                -webkit-transition: all 0.4s ease 0.1s;
+                -o-transition: all 0.4s ease 0.1s;
+                transition: all 0.4s ease 0.1s;
+            }
+
+            .product__hover li:nth-child(2) {
+                -webkit-transition: all 0.4s ease 0.15s;
+                -o-transition: all 0.4s ease 0.15s;
+                transition: all 0.4s ease 0.15s;
+            }
+
+            .product__hover li:nth-child(3) {
+                -webkit-transition: all 0.4s ease 0.2s;
+                -o-transition: all 0.4s ease 0.2s;
+                transition: all 0.4s ease 0.2s;
+            }
+
+            .product__hover li:nth-child(4) {
+                -webkit-transition: all 0.4s ease 0.25s;
+                -o-transition: all 0.4s ease 0.25s;
+                transition: all 0.4s ease 0.25s;
+            }
+
+            .product__hover li:last-child {
+                margin-right: 0;
+            }
+
+            .product__hover li:hover a {
+                background: #A324CC;
+            }
+
+                .product__hover li:hover a span {
+                    color: #ffffff;
+                    -webkit-transform: rotate(360deg);
+                    -ms-transform: rotate(360deg);
+                    transform: rotate(360deg);
+                }
+
+            .product__hover li a {
+                font-size: 18px;
+                color: #111111;
+                display: block;
+                height: 45px;
+                width: 45px;
+                background: #ffffff;
+                line-height: 48px;
+                text-align: center;
+                border-radius: 50%;
+                -webkit-transition: all, 0.5s;
+                -o-transition: all, 0.5s;
+                transition: all, 0.5s;
+            }
+
+                .product__hover li a span {
+                    position: relative;
+                    -webkit-transform: rotate(0);
+                    -ms-transform: rotate(0);
+                    transform: rotate(0);
+                    -webkit-transition: all, 0.3s;
+                    -o-transition: all, 0.3s;
+                    transition: all, 0.3s;
+                    display: inline-block;
+                }
+
+    .product__item__text {
+        text-align: center;
+        padding-top: 16px;
+    }
+
+        .product__item__text h6 a {
+            font-size: 14px;
+            color: #111111;
+        }
+
+        .product__item__text .rating {
+            line-height: 13px;
+            margin-bottom: 2px;
+        }
+
+            .product__item__text .rating i {
+                font-size: 10px;
+                color: #A324CC;
+                margin-right: -4px;
+            }
+
+                .product__item__text .rating i:last-child {
+                    margin-right: 0;
+                }
+
+        .product__item__text .product__price {
+            color: #111111;
+            font-weight: 600;
+        }
+
+            .product__item__text .product__price span {
+                font-size: 14px;
+                color: #b1b0b0;
+                text-decoration: line-through;
+                margin-left: 4px;
+            }
+</style>
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Get))
+{
+
+    <b> Search   <i class="fa fa-search"></i> </b>
+
+
+
+    <br />
+
+    <td>
+        @Html.TextBox("search", null, new { Class = "form-control col-md-4", placeholder = "Enter Product name " })
+    </td>
+    <br />
+    <div class="col-md-4">
+        <input class="col-md-4" style="color: #ffffff; background-color: #A32CC4 ;border-radius:10px" type="submit" name="submit" value="search" />
+    </div>
+}
+<br />
+@if (Model.Count() == 0)
+{
+    <tr>
+        <td colspan="3"> Records not found </td>
+    </tr>
+}
+@*else
+    {
+
+        foreach (var item in Model)
+        {
+            <tr>
+                <td> @Html.DisplayFor(modelItem => item.PRODUCT_NAME) /> </td>
+
+                <td> @Html.DisplayFor(modelItem => item.PRODUCT_SALEPRICE) /> </td>
+                <td>
+                    <img height="100px" width="100px" src="@Url.Content(item.PRODUCT_IMAGE)" />
+                </td>
+            </tr>
+        }
+    }*@
+
+<div class="row product-categorie-box">
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
+            <div class="row">
+                @foreach (var p in Model)
+                {
+                    <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                        <div class="product__item">
+
+                            <div class="product__item__pic set-bg zoom-in">
+
+                                <img src="@Url.Content(p.PICTURE)" style="height:270px; width:260px" alt="Image">
+                                <div>
+                                    @if (p.OrderDetails.Sum(x => x.QUANTITY) > 0)
+                                    {
+
+                                        <ul class="product__hover" style="color:#A324CC">
+                                            <li><a href="#" class="image-popup" title="@p.OrderDetails.Sum(x=>x.QUANTITY)"><i class="fas fa-store"></i></a></li>
+                                            <li><a href="@Url.Action("ShopDetail","Home", new { id = p.PRODUCT_ID })" class="image-popup" title="View"><i class="fas fa-eye"></i></a></li>
+                                            <li><a href="@Url.Action("AddtoWishList","Customers", new { id = p.PRODUCT_ID })" class="image-popup" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+
+                                            <li>  <a class="cart image-popup" href="@Url.Action("AddToCart","Home", new { id = p.PRODUCT_ID })" title="Add to Bag"><i class="fa fa-shopping-bag"></i></a></li>
+                                        </ul>
+                                    }
+                                    else
+                                    {
+                                        <a class="label stockout stockblue cart">Out of Stock</a>
+                                        <ul class="product__hover" style="color:#A324CC">
+
+                                            <li> <center><a href="#" class="image-popup" title="Stock Out"><i class="fa fa-times"></i></a></center></li>
+                                        </ul>
+                                    }
+                                </div>
+                            </div>
+                            <div class="product__item__text">
+                                <center>
+                                    <h6><a href="#">@p.PRODUCT_NAME</a></h6>
+                                    <div class="rating" style="color:#A324CC">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product__price">Rs.@p.SALEPRICE</div>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+</div>
+        <script src="~/Content/ProTemp/js/jquery.magnific-popup.min.js"></script>
+        <script src="~/Content/ProTemp/js/main.js"></script>

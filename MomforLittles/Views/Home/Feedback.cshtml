@@ -1,0 +1,312 @@
+﻿@using MomforLittles.Models
+@model MomforLittles.Models.ProductModel
+@{
+    Model1 db = new Model1();
+    Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
+}
+@{
+    ViewBag.Title = "Feedback";
+
+}
+<head>
+    <title>Contact Us</title>
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="~/Content/CustTemp/assets/css/templatemo-digimedia-v1.css">
+    <link rel="stylesheet" href="~/Content/CustTemp/assets/css/animated.css">
+    <link rel="stylesheet" href="~/Content/CustTemp/assets/css/owl.css">
+    <style>
+        .ro {
+            display: flex;
+        }
+
+        /* Clear floats after image containers */
+        .col {
+            flex: 33.33%;
+            padding: 5px;
+        }
+
+        #contact:before {
+            background-image: url(../images/contact-top-right.png);
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 726px;
+            height: 78px;
+            background-repeat: no-repeat;
+            content: '';
+            z-index: 1;
+        }
+
+        .contact-dec img {
+            max-width: 224px;
+            position: absolute;
+            right: 25px;
+            top: -242px;
+        }
+
+        #contact:after {
+            background-image: url(../images/contact-bottom-right.png);
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 532px;
+            height: 106px;
+            background-repeat: no-repeat;
+            content: '';
+            z-index: 1;
+        }
+
+        #contact {
+            box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
+            position: relative;
+            background-color: #fff;
+            border-radius: 23px;
+            text-align: center;
+        }
+
+        .main-button {
+            display: inline-block;
+            background-color: #fff;
+            font-size: 15px;
+            font-weight: 400;
+            color: #fa65b1;
+            margin-top: 30px;
+            width: 100%;
+            text-transform: capitalize;
+            padding: 12px 25px;
+            border-radius: 23px;
+            letter-spacing: 0.25px;
+            border: 1px solid #fa65b1;
+            transition: all .3s;
+            outline: none;
+        }
+
+            .main-button:hover {
+                background-color: #fa65b1 !important;
+                color: #fff !important;
+            }
+
+        #area {
+            width: 100%;
+            min-width: 100%;
+            max-width: 100%;
+            max-height: 200px;
+            min-height: 200px;
+            height: 200px;
+            border-radius: 23px;
+            background-color: transparent;
+            border: 1px solid #eee;
+            outline: none;
+            font-size: 15px;
+            font-weight: 300;
+            color: #2a2a2a;
+            padding: 15px 20px;
+            margin-top: 30px;
+        }
+
+        #zx {
+            width: 100%;
+            height: 46px;
+            background-color: transparent;
+            border: 1px solid #eee;
+            outline: none;
+            font-size: 15px;
+            font-weight: 300;
+            color: #2a2a2a;
+            padding: 0px 20px;
+            border-radius: 23px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<!-- End All Title Box -->
+<!-- Start Contact Us  -->
+<div class="contact-us section">
+    <div class="section-heading wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
+        <h6>Contact Us</h6>
+        <h4>Get In Touch With Us <em>Now</em></h4>
+        <div class="line-dec"></div>&nbsp;&nbsp;&nbsp;
+    </div>
+    <div class="container" id="contact">
+        <div class="row">
+            <div class="col-lg-4 col-sm-12">
+
+                <div class="col-lg-16">
+                    <div id="map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13506.060143945026!2d74.1529834!3d32.1903499!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391f2916d2863087%3A0x5f782204afdc2622!2sUniversity%20Of%20The%20Punjab%20-%20Gujranwala%20Campus!5e0!3m2!1sen!2s!4v1683693370721!5m2!1sen!2s" width="420" height="900" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" frameborder="0"></iframe>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-lg-8 col-sm-12">
+                @using (Html.BeginForm("FeedNow", "Home"))
+                {
+                    if (Session["Customer"] != null)
+                    {
+                        Customer c = (Customer)Session["Customer"];
+
+                        <div>
+
+                            <div class="col-lg-12">
+                                <div class="contact-dec">
+                                    <img src="~/Content/CustTemp/assets/images/contact-dec.png" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="fill-form">
+                                    <div class="ro">
+                                        <div class="col-lg-7">
+                                            <div class="info-post">
+                                                <div class="icon">
+                                                    <div class="col">
+                                                        <img src="~/Content/CustTemp/assets/images/phone-icon.png" alt="">
+                                                        <a href="#"> @db.Companies.Select(x => x.COMPANY_CONTACT).FirstOrDefault()</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12">
+                                            <div class="info-post">
+                                                <div class="icon">
+                                                    <div class="col">
+                                                        <img src="~/Content/CustTemp/assets/images/email-icon.png" alt="">
+                                                        <a href="#"> @db.Companies.Select(x => x.COMPANY_EMAIL).FirstOrDefault()y</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-7">
+                                            <div class="info-post">
+                                                <div class="icon">
+                                                    <div class="col">
+                                                        <img src="~/Content/CustTemp/assets/images/location-icon.png" alt="">
+                                                        <a href="#"> @db.Companies.Select(x => x.COMPANY_ADDRESS).FirstOrDefault()</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <form action="#" class="contact-form" id="contact">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+
+                                                <input name="FEEDBACK_NAME" id="zx" value=@c.CUSTOMER_NAME type="text" class="form-control" required placeholder="Enter Your Name(Enter Text Only)">
+                                                <input name="FEEDBACK_EMAIL" id="zx" value=@c.CUSTOMER_EMAIL type="email" class="form-control" required placeholder="Enter Your Email">
+                                                <input type="text" name="FEEDBACK_CONTACT" value=@c.CUSTOMER_CONTACT  class="form-control" id="zx" placeholder="Contact Number" required />
+                                            </div>
+
+
+                                        </div>
+                                        <div class="col">
+                                            <div class="col-lg-12">
+
+                                                <textarea name="FEEDBACK_DETAIL" id="area" cols="30" rows="7" class="form-control" required placeholder="Enter your Message"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <button type="submit" id="form-submit"  class="main-button ">Send Message Now</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                    else
+                    {
+
+                        <div>
+
+                            <div class="col-lg-12">
+                                <div class="contact-dec">
+                                    <img src="~/Content/CustTemp/assets/images/contact-dec.png" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="fill-form">
+                                    <div class="ro">
+                                        <div class="col-lg-7">
+                                            <div class="info-post">
+                                                <div class="icon">
+                                                    <div class="col">
+                                                        <img src="~/Content/CustTemp/assets/images/phone-icon.png" alt="">
+                                                        <a href="#"> @db.Companies.Select(x => x.COMPANY_CONTACT).FirstOrDefault()</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12">
+                                            <div class="info-post">
+                                                <div class="icon">
+                                                    <div class="col">
+                                                        <img src="~/Content/CustTemp/assets/images/email-icon.png" alt="">
+                                                        <a href="#"> @db.Companies.Select(x => x.COMPANY_EMAIL).FirstOrDefault()y</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-7">
+                                            <div class="info-post">
+                                                <div class="icon">
+                                                    <div class="col">
+                                                        <img src="~/Content/CustTemp/assets/images/location-icon.png" alt="">
+                                                        <a href="#"> @db.Companies.Select(x => x.COMPANY_ADDRESS).FirstOrDefault()</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <form action="#" class="contact-form" id="contact">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+
+                                                <input name="FEEDBACK_NAME" id="zx" pattern="^[a-zA-Z]+[a-zA-Z'\s\.]*$" maxlength="15" minlength="3" type="text" class="form-control" required placeholder="Enter Your Name(Enter Text Only)">
+                                                <input name="FEEDBACK_EMAIL" id="zx" type="email" class="form-control" required placeholder="Enter Your Email">
+                                                <input type="text" name="FEEDBACK_CONTACT" pattern="\d{11}" class="form-control" id="zx" placeholder="Contact" required />
+                                            </div>
+
+
+                                        </div>
+                                        <div class="col">
+                                            <div class="col-lg-12">
+
+                                                <textarea name="FEEDBACK_DETAIL" id="area" cols="30" rows="7" class="form-control" required placeholder="Enter your Message"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <button type="submit" id="form-submit"  class="main-button ">Send Message Now</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+                }
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Cart -->
+
+
+<!-- Scripts -->
+<script src="~/Content/CustTemp/vendor/jquery/jquery.min.js"></script>
+<script src="~/Content/CustTemp/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="~/Content/CustTemp/assets/js/owl-carousel.js"></script>
+<script src="~/Content/CustTemp/assets/js/animation.js"></script>
+<script src="~/Content/CustTemp/assets/js/imagesloaded.js"></script>
+<script src="~/Content/CustTemp/assets/js/custom.js"></script>

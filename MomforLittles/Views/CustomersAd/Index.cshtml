@@ -1,0 +1,61 @@
+﻿@model IEnumerable<MomforLittles.Models.Customer>
+@using MomforLittles.Models;
+@{
+    
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CUSTOMER_NAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CUSTOMER_EMAIL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CUSTOMER_ADDRESS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CUSTOMER_CONTACT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CUSTOMER_PASSWORD)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+       
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CUSTOMER_NAME)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CUSTOMER_EMAIL)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CUSTOMER_ADDRESS)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CUSTOMER_CONTACT)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CUSTOMER_PASSWORD)
+                    </td>
+                    <td>
+                       
+                        <a class="btn btn-success glyphicon glyphicon-book" href="@Url.Action("Details", "CustomersAd", new { id = item.CUSTOMER_ID })"></a>
+                        <a class="btn btn-danger glyphicon glyphicon-trash" href="@Url.Action("Delete", "CustomersAd", new { id = item.CUSTOMER_ID })"></a>
+
+                    </td>
+                </tr>
+       
+        
+    }
+
+</table>

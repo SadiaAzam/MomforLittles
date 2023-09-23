@@ -1,0 +1,75 @@
+﻿@model MomforLittles.Models.Product
+
+@{
+    Layout = "~/Views/Shared/_LayoutBrand.cshtml";
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Brand.BRAND_NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Brand.BRAND_NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.CATEGORY_NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.CATEGORY_NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRODUCT_NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRODUCT_NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DESCRIPTION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DESCRIPTION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PURCHASEPRICE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PURCHASEPRICE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SALEPRICE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SALEPRICE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PICTURE)
+        </dt>
+
+        <dd>
+            <img height="100px" width="100px" src="@Url.Content(Model.PICTURE)" />
+        </dd>
+
+    </dl>
+</div>
+<p>
+    
+    @Html.ActionLink("Back to List", "Index")
+</p>

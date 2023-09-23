@@ -1,0 +1,66 @@
+﻿@model MomforLittles.Models.Admin
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Admin</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ADMIN_NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADMIN_NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ADMIN_EMAIL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADMIN_EMAIL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ADMIN_PASSWORD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADMIN_PASSWORD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ADMIN_CONTACT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADMIN_CONTACT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ADMIN_ADDRESS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADMIN_ADDRESS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ADMIN_PROFILE)
+        </dt>
+
+        <dd>
+            <img height="100px" width="100px" src="@Url.Content(Model.ADMIN_PROFILE)" />
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ADMIN_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

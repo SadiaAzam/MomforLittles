@@ -1,0 +1,49 @@
+﻿@using MomforLittles.Models;
+
+@{
+    int number = 0;
+    Model1 db = new Model1();
+    Customer c = (Customer)Session["Customer"];
+    Layout = "~/Views/Shared/_Layoutedit.cshtml";
+    ViewBag.Title = "Customer Order History";
+}
+
+<center>
+    <h2>Customer Order History</h2>
+</center>
+
+
+<table align="center" class="tabel table-bordered table-responsive" width="100%">
+    <tr style="background-color:#A324CC; color:floralwhite">
+        <th style="text-align: center">Sr #</th>
+        <th style="text-align: center">Order Number</th>
+        <th style="text-align: center">Customer Name</th>
+        <th style="text-align: center">Customer Email</th>
+        <th style="text-align: center">Customer Address</th>
+        <th style="text-align: center">Customer Contact</th>
+        <th style="text-align: center">Order Status</th>
+        <th style="text-align: center">Order Date</th>
+        <th colspan="2" style="text-align: center">Action</th>
+    </tr>
+
+    @foreach (var o in db.Orders.Where(x => x.ORDER_TYPE == "Sale" & x.STATUS == "Active"))
+    {
+
+        if (o.CUSTOMER_FID == c.CUSTOMER_ID)
+        {
+            number++;
+            <tr>
+                <td align="center">@number</td>
+                <td align="center">Order-@o.ORDER_ID</td>
+                <td align="center">@o.ORDER_NAME</td>
+                <td align="center">@o.ORDER_EMAIL</td>
+                <td align="center">@o.ORDER_ADDRESS</td>
+                <td align="center">@o.ORDER_CONTACT</td>
+                <td align="center">@o.ORDER_STATUS</td>
+                <td align="center">@DateTime.Parse(o.ORDER_DATE.ToString()).ToLongDateString()</td>
+                <td align="center"><a href="@Url.Action("OrderCancellation","Customers", new { id = o.ORDER_ID })" class="btn btn-danger">Cancel Order</a></td>
+                <td align="center"><a href="@Url.Action("Invoice","Customers", new { id = o.ORDER_ID })" class="btn btn-success">View Invoice</a></td>
+            </tr>
+        }
+    }
+</table>

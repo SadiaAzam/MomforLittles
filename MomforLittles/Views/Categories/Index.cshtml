@@ -1,0 +1,41 @@
+﻿@model IEnumerable<MomforLittles.Models.Category>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a class="btn btn-danger btn-lg" href="@Url.Action("Create","Categories")">Add New Category</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            CATEGORY NAME
+        </th>
+        <th>
+            CATEGORY IMAGE
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CATEGORY_NAME)
+            </td>
+            <td>
+                <img height="100px" width="100px" src="@Url.Content(item.CATEGORY_IMAGE)" />
+            </td>
+            <td>
+                <a class="btn btn-primary glyphicon glyphicon-edit" href="@Url.Action("Edit","Categories", new {id= item.CATEGORY_ID})"></a>  |
+                <a class="btn btn-success glyphicon glyphicon-book" href="@Url.Action("Details","Categories", new {id= item.CATEGORY_ID})"></a>  |
+                <a class="btn btn-danger glyphicon glyphicon-trash" href="@Url.Action("Delete","Categories", new {id= item.CATEGORY_ID})"></a>
+
+            </td>
+        </tr>
+    }
+
+</table>
